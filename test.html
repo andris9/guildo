@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>guildo.js TEST</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript" src="src/guildo.js"></script>
+        <script type="text/javascript" src="src/sizzle.js"></script>
+        <script type="text/javascript" src="src/json.js"></script>
+        <script type="text/javascript" src="src/native.js"></script>
+        <script type="text/javascript" src="src/utils.js"></script>
+        <script type="text/javascript" src="src/ajax.js"></script>
+        <script type="text/javascript" src="src/string.js"></script>
+        <script type="text/javascript" src="src/element.js"></script>
+        <script type="text/javascript" src="src/enumerable.js"></script>
+        
+        
+        <script type="text/javascript">
+
+            if(!window.console){
+                console = {log: alert}
+            }
+        
+            function fe(val, indx){
+                console.log(indx, val);
+            } 
+        
+            $G(["a","b","c"]).forEach(fe);
+            $G({"d":45,"e":67,"f":[1,2,3]}).forEach(fe);
+            $G("abcdderf").forEach(fe);
+            
+            
+            console.log($G([1,2,3,4,5,6,7]).findAll(function(val){return val>3 && val<6}));
+            console.log($G([1,2,3,4,5,6,7]).find(function(val){return val>3 && val<6}));
+            console.log($G([1,2,3,4,5,6,7]).find(function(val){return val>99 && val<6}));
+            
+            console.log($G([10,20,30]).map(function(val){
+                return val*val;
+            }));
+            
+            
+            console.log($G([0,1,2,3,4]).reduce(function(previousValue, currentValue){
+                return previousValue + currentValue;
+            }));
+
+            function koll(e){
+
+                console.log(e);
+                console.log($G(document.body).querySelectorAll("h1"));
+                
+                var t = new $G.Ajax.Request("test.html",{
+                    onComplete: function(response){
+                        alert(response.responseText);
+                    },
+                    requestHeaders: [
+                        ["X-Requested-With", "minutestikas"],
+                        ["Content-type", "application/json"],
+                        ["X-Work-For", "US"]
+                    ]
+                });
+            }
+
+            function sethandlers(){
+                $G(document.getElementById("nupp")).addEventListener("click", koll, false);
+                $G(document.getElementById("nupp")).addEventListener("click", koll.bind({}), false);
+                $G(document.getElementById("nupp")).removeEventListener("click", koll, false);
+            }
+
+        </script>
+        
+    </head>
+    <body>
+        <h1>test</h1>
+       
+        <input type="button" name="nupp" id="nupp" value="nupp" />
+        
+        <script>sethandlers()</script>
+    </body>
+</html>
