@@ -61,3 +61,26 @@ $G.extended.prototype.removeEventListener = function(evt, callback /*, useCaptur
     
     return this;    
 }
+
+/*
+ * Sets elements CSS styles
+ *
+ * Usage:
+ *     $G(document.body).setStyle({
+ *          "bacground-color": "red",
+ *          "font-family": "Arial, Sans-serif"
+ *     });
+ *
+ */
+$G.extended.prototype.setStyle = function(styles){
+    if(!$G.isElement(this.value))
+        return this;
+    
+    $G(styles).forEach((function(value, key){
+        if(typeof key=="number")
+            return;
+        this.value.style[$G(key).toCamelCase()] = value;
+    }).bind(this));
+    
+    return this;
+}

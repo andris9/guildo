@@ -59,10 +59,17 @@
                 });
             }
 
+            console.log(123, $G("this-is-an-hyphenized-string").toCamelCase());
+
             function sethandlers(){
                 $G(document.getElementById("nupp")).addEventListener("click", koll, false);
                 $G(document.getElementById("nupp")).addEventListener("click", koll.bind({}), false);
                 $G(document.getElementById("nupp")).removeEventListener("click", koll, false);
+                
+                $G(document.body).setStyle({
+                    "background-color": "red",
+                    "fontFamily":"Arial, Verdana, Sans-serif"
+                });
             }
 
         </script>

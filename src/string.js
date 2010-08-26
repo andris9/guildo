@@ -16,3 +16,18 @@ $G.extended.prototype.trim = function(){
     else
         return false;
 }
+
+/*
+ * Converts a hyphenized string into camel case
+ *
+ * Usage:
+ *     $G("background-color").toCamelCase() -> backgroundColor
+ *
+ */
+
+$G.extended.prototype.toCamelCase = function(){
+    if(!this.value)
+        return false;
+    return (typeof this.value=="string" && this.value || String(this.value)).
+        replace(/\-(.)/g,function(a,b){return b.toUpperCase()});
+}

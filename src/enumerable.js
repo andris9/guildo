@@ -8,7 +8,11 @@
  * Usage: 
  *     $G([1,2,3,4,5]).forEach(function(value, index){
  *         alert(index+': '+value);
- *     }); 
+ *     });
+ *
+ *     $G({a:1, b:2}).forEach(function(value, key){
+ *         alert(key+': '+value);
+ *     });
  */
 
 $G.extended.prototype.forEach = function(callback){
